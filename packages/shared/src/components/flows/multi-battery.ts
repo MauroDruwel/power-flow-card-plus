@@ -54,7 +54,7 @@ export const flowMultiBattery = (
   const showSolar = solar.has && showLine(config, solar.state.toBattery || 0);
   if (!showGrid && !showHome && !showSolar) return nothing;
 
-  return html`<div class="lines multi-battery-lines high">
+  return html`<div class="lines multi-battery-lines">
     <svg
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
