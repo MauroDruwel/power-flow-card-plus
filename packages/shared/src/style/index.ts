@@ -168,9 +168,9 @@ export const styles = css`
   }
   .lines.multi-battery-lines svg {
     position: absolute;
-    left: 0;
+    left: calc(-1 * var(--size-circle-entity));
     top: 0;
-    width: 100%;
+    width: calc(100% + var(--size-circle-entity));
     height: 100%;
     max-width: none;
   }
