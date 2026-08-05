@@ -165,8 +165,8 @@ export const styles = css`
   .lines.multi-battery-lines {
     display: block;
     z-index: 2;
-    bottom: 0;
-    height: 100%;
+    bottom: 60px;
+    height: calc(100% - 125px);
   }
   .lines.multi-battery-lines svg {
     position: absolute;
