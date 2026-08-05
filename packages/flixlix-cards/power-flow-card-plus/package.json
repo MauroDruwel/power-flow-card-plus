@@ -1,0 +1,59 @@
+{
+  "name": "power-flow-card-plus",
+  "private": true,
+  "version": "0.3.7",
+  "type": "module",
+  "description": "A power flow card for Home Assistant",
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "hass",
+    "dashboard",
+    "custom-cards"
+  ],
+  "main": "./dist/power-flow-card-plus.js",
+  "exports": {
+    ".": "./dist/power-flow-card-plus.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flixlix/power-flow-card-plus.git"
+  },
+  "author": "flixlix",
+  "bugs": {
+    "url": "https://github.com/flixlix/power-flow-card-plus/issues"
+  },
+  "homepage": "https://github.com/flixlix/power-flow-card-plus#readme",
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rimraf dist node_modules",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@flixlix-cards/shared": "workspace:*",
+    "@mdi/js": "catalog:packages",
+    "custom-card-helpers": "catalog:packages",
+    "home-assistant-js-websocket": "catalog:packages",
+    "lit": "catalog:packages",
+    "lit-element": "catalog:packages",
+    "lit-html": "catalog:packages",
+    "memoize-one": "catalog:packages",
+    "superstruct": "catalog:packages"
+  },
+  "devDependencies": {
+    "@babel/core": "catalog:packages",
+    "@babel/preset-env": "catalog:packages",
+    "@babel/preset-typescript": "catalog:packages",
+    "@flixlix-cards/bundler": "workspace:*",
+    "@rollup/plugin-babel": "catalog:packages",
+    "@rollup/plugin-commonjs": "catalog:packages",
+    "@rollup/plugin-json": "catalog:packages",
+    "@rollup/plugin-node-resolve": "catalog:packages",
+    "@rollup/plugin-terser": "catalog:packages",
+    "@rollup/plugin-typescript": "catalog:packages",
+    "rollup": "catalog:packages",
+    "rollup-plugin-minify-html-literals": "catalog:packages",
+    "rollup-plugin-serve": "catalog:packages",
+    "typescript": "catalog:"
+  }
+}

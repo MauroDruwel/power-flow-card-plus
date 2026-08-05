@@ -19,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/flixlix/power-flow-card-plus/issues"
   },
-  "homepage": "https://github.com/flixlix/power-flow-card-plus#readme"
+  "homepage": "https://github.com/flixlix/power-flow-card-plus#readme",
+  "scripts": {
+    "build": "pnpm --filter power-flow-card-plus build",
+    "typecheck": "pnpm --filter power-flow-card-plus typecheck",
+    "test": "pnpm --filter power-flow-card-plus test"
+  },
+  "packageManager": "pnpm@11.5.0"
 }

@@ -1,5 +1,11 @@
 # power-flow-card-plus
 
+## 0.3.7-fork
+
+### Features
+
+- **Multiple battery support**: a second battery can now be configured via `entities.battery_2` (same configuration structure as `battery`). Both battery circles are displayed side by side (centered). The flow lines, flow rates and the home circle use the combined power of both batteries, while each circle shows its own state of charge and charge/discharge values. Single battery usage is fully backward compatible.
+
 ## 0.3.7
 
 ### Patch Changes

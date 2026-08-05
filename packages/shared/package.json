@@ -1,0 +1,35 @@
+{
+  "name": "@flixlix-cards/shared",
+  "version": "0.0.5",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./i18n": "./src/i18n/index.ts",
+    "./style": "./src/style/index.ts",
+    "./types": "./src/types/index.ts",
+    "./components/*": "./src/components/*.ts",
+    "./ha/*": "./src/ha/*.ts",
+    "./states/*": "./src/states/*.ts",
+    "./utils/*": "./src/utils/*.ts",
+    "./const/*": "./src/const/*.ts",
+    "./ui-editor/*": "./src/ui-editor/*.ts"
+  },
+  "peerDependencies": {
+    "custom-card-helpers": "catalog:packages",
+    "home-assistant-js-websocket": "catalog:packages",
+    "lit": "catalog:packages"
+  },
+  "dependencies": {
+    "@mdi/js": "catalog:packages",
+    "lit-element": "catalog:packages",
+    "lit-html": "catalog:packages",
+    "memoize-one": "catalog:packages",
+    "sortablejs": "^1.15.7",
+    "superstruct": "catalog:packages",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/sortablejs": "catalog:packages",
+    "typescript": "catalog:"
+  }
+}

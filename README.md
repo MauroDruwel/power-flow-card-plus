@@ -11,8 +11,12 @@
 > [!NOTE]
 > This card is distributed via [flixlix/power-flow-card-plus](https://github.com/flixlix/power-flow-card-plus), but the source code lives in the monorepo at [flixlix/flixlix-cards](https://github.com/flixlix/flixlix-cards). Issues and feature requests will be tracked there going forward.
 
+> [!IMPORTANT]
+> **This is a fork with multiple battery support.** In addition to the regular `battery` entity, you can now configure a second battery via `entities.battery_2` (see [Battery Configuration](#battery-configuration) and the [Two Batteries](#two-batteries) example). Everything else behaves exactly like the upstream card. The TypeScript source of this fork lives in the `packages/` directory and can be built with `pnpm install && pnpm build` (the compiled `power-flow-card-plus.js` at the repo root is committed and ready to use).
+
 ## Additional Features / Enhancements
 
+- Multiple batteries (up to 2) 🔋🔋
 - UI Editor!!! 🥳
 - Multiple Language support (🇺🇸, 🇩🇪, 🇵🇹, 🇪🇸, 🇧🇷, 🇳🇱, 🇮🇹, 🇫🇷, 🇷🇺, 🇫🇮, 🇵🇱, 🇩🇰, 🇸🇰, 🇨🇿)
 - Bidirectional Individual Entities ↕️
@@ -142,13 +146,14 @@ If none of these actions are configured for a clickable entity surface, the card
 
 #### Entities object
 
-At least one of _grid_, _battery_, or _solar_ is required. All entites (except _battery_charge_) should have a `unit_of_measurement` attribute of W(watts) or kW(kilowatts).
+At least one of _grid_, _battery_, _battery_2_, or _solar_ is required. All entites (except _battery_charge_) should have a `unit_of_measurement` attribute of W(watts) or kW(kilowatts).
 
 | Name                   | Type     | Description                                                                      |
 | ---------------------- | :------- | -------------------------------------------------------------------------------- |
 | grid                   | `object` | Check [Grid Configuration](#grid-configuration) for more information.            |
 | solar                  | `object` | Check [Solar Configuration](#solar-configuration) for more information.          |
 | battery                | `object` | Check [Battery Configuration](#battery-configuration) for more information.      |
+| battery_2              | `object` | Optional second battery. Check [Battery Configuration](#battery-configuration) for more information. |
 | individual             | `array`  | Check [Individual Devices](#individual-configuration) for more information.      |
 | home                   | `object` | Check [Home Configuration](#home-configuration) for more information.            |
 | fossil_fuel_percentage | `object` | Check [Fossil Fuel Percentage](#fossil-fuel-configuration) for more information. |
@@ -187,6 +192,8 @@ At least one of _grid_, _battery_, or _solar_ is required. All entites (except _
 
 #### Battery Configuration
 
+The `battery` and `battery_2` fields share the same configuration structure. `battery_2` is optional and, when configured, a second battery circle will be displayed right next to the first one (both are centered). The flow lines and the home circle will use the combined power of both batteries, while each circle shows its own state of charge and charge/discharge values.
+
 | Name                             | Type                                                           | Default                                                | Description                                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | entity                           | `string` or `object`                                           | `undefined` required                                   | Entity ID of a sensor supporting a single state with negative values for production and positive values for consumption or an object for [split entities](#split-entities). Examples of both can be found below.                                                                                                                                                                              |
@@ -194,7 +201,7 @@ At least one of _grid_, _battery_, or _solar_ is required. All entites (except _
 | state_of_charge_unit             | `string`                                                       | `%`                                                    | Unit of the state of charge.                                                                                                                                                                                                                                                                                                                                                                  |
 | state_of_charge_unit_white_space | `boolean`                                                      | `true`                                                 | If set to `false`, the unit of the state of charge will not have a white space in front of it.                                                                                                                                                                                                                                                                                                |
 | state_of_charge_decimals         | `number`                                                       | `0`                                                    | Number of decimals to show for the state of charge.                                                                                                                                                                                                                                                                                                                                           |
-| name                             | `string`                                                       | `Battery`                                              | Label for the battery option. If you don't populate this option, the label will continue to update based on the language selected.                                                                                                                                                                                                                                                            |
+| name                             | `string`                                                       | `Battery` (or `Battery 2`)                             | Label for the battery option. If you don't populate this option, the label will continue to update based on the language selected.                                                                                                                                                                                                                                                            |
 | icon                             | `string`                                                       | `mdi:battery` or dynamic based on state of the battery | Icon path for the icon inside the Battery Circle.                                                                                                                                                                                                                                                                                                                                             |
 | color                            | `object`                                                       |                                                        | Check [Color Objects](#color-object) for more information.                                                                                                                                                                                                                                                                                                                                    |
 | color_icon                       | "color_dynamically", "no_color", "production" or "consumption" | `no_color`                                             | If set to `color_dynamically`, icon color will match the highest value. If set to `production`, icon color will match the production. If set to `consumption`, icon color will match the consumption.                                                                                                                                                                                         |
@@ -385,6 +392,26 @@ kilo_threshold: 10000
 This should give you something like this:
 
 ![demo_grid_solar_bat-2](https://user-images.githubusercontent.com/61006057/232319141-06ac61c7-daed-461e-9fdb-5ce84606bde6.gif)
+
+##### Two Batteries
+
+The optional `battery_2` field accepts the exact same configuration as `battery`. When configured, both battery circles are shown side by side (centered). The flow lines, flow rates and the home circle use the combined power of both batteries, while each circle displays its own state of charge and charge/discharge values.
+
+```yaml
+type: custom:power-flow-card-plus
+entities:
+  grid:
+    entity: sensor.grid_power
+  solar:
+    entity: sensor.solar_production
+  battery:
+    entity: sensor.battery_1_power
+    state_of_charge: sensor.battery_1_soc
+  battery_2:
+    entity: sensor.battery_2_power
+    state_of_charge: sensor.battery_2_soc
+    name: Battery 2
+```
 
 ### Mix & Match Config aka "Full Config"
 
