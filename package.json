@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/MauroDruwel/power-flow-card-plus#readme",
   "scripts": {
-    "build": "pnpm --filter power-flow-card-plus build",
+    "build": "pnpm --filter power-flow-card-plus build && cp packages/flixlix-cards/power-flow-card-plus/dist/power-flow-card-plus.js ./power-flow-card-plus.js",
     "typecheck": "pnpm --filter power-flow-card-plus typecheck",
     "test": "pnpm --filter power-flow-card-plus test"
   },

@@ -1,15 +1,14 @@
 # Power Flow Card Plus
 
-[![ko-fi support](https://img.shields.io/badge/support-me-ff5e5b?style=flat-square&logo=ko-fi)](https://ko-fi.com/flixlix)
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
-![GitHub total downloads](https://img.shields.io/github/downloads/flixlix/power-flow-card-plus/total?style=flat-square)
-![commit_activity](https://img.shields.io/github/commit-activity/y/flixlix/power-flow-card-plus?color=brightgreen&label=Commits&style=flat-square)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/flixlix/power-flow-card-plus?style=flat-square)
+![GitHub total downloads](https://img.shields.io/github/downloads/MauroDruwel/power-flow-card-plus/total?style=flat-square)
+![commit_activity](https://img.shields.io/github/commit-activity/y/MauroDruwel/power-flow-card-plus?color=brightgreen&label=Commits&style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/MauroDruwel/power-flow-card-plus?style=flat-square)
 
 ![2023-03-26-13-04-07](https://user-images.githubusercontent.com/61006057/227771568-78497ecc-e863-46f2-b29e-e15c7c20a154.gif)
 
 > [!NOTE]
-> This card is distributed via [flixlix/power-flow-card-plus](https://github.com/flixlix/power-flow-card-plus), but the source code lives in the monorepo at [flixlix/flixlix-cards](https://github.com/flixlix/flixlix-cards). Issues and feature requests will be tracked there going forward.
+> This card is a fork of [flixlix/power-flow-card-plus](https://github.com/flixlix/power-flow-card-plus) with multiple battery support. Source code and issues live at [MauroDruwel/power-flow-card-plus](https://github.com/MauroDruwel/power-flow-card-plus).
 
 > [!IMPORTANT]
 > **This is a fork with multiple battery support.** In addition to the regular `battery` entity, you can now configure a second battery via `entities.battery_2` (see [Battery Configuration](#battery-configuration) and the [Two Batteries](#two-batteries) example). Everything else behaves exactly like the upstream card. The TypeScript source of this fork lives in the `packages/` directory and can be built with `pnpm install && pnpm build` (the compiled `power-flow-card-plus.js` at the repo root is committed and ready to use).
@@ -64,7 +63,7 @@ In case you want to watch a tutorial instead of reading through this very long r
 
 ### HACS (recommended)
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=flixlix&repository=power-flow-card-plus&category=Dashboard)
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=MauroDruwel&repository=power-flow-card-plus&category=Dashboard)
 
 This card is directly available through [HACS](https://hacs.xyz). To install HACS, follow these [instructions](https://hacs.xyz/docs/setup/prerequisites).
 After having HACS installed, simply search for "Power Flow Card Plus" and download it using the UI 🙂
@@ -72,7 +71,7 @@ After having HACS installed, simply search for "Power Flow Card Plus" and downlo
 <details>
 <summary>Manual install</summary>
 
-1. Download and copy `power-flow-card-plus.js` from the [latest release](https://github.com/flixlix/power-flow-card-plus/releases/latest) into your `config/www` directory.
+1. Download and copy `power-flow-card-plus.js` from the [latest release](https://github.com/MauroDruwel/power-flow-card-plus/releases/latest) into your `config/www` directory.
 
 2. Add the resource reference as decribed below.
 

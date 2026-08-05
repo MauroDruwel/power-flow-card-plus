@@ -128,7 +128,7 @@ export class PowerFlowCardPlusEditor extends LitElement implements LovelaceCardE
       <ha-alert class="legacy-fields-alert" alert-type="warning">
         Legacy config fields detected. Field names changed: w_decimals -> base_decimals, kw_decimals
         -> kilo_decimals, watt_threshold -> kilo_threshold.<br />
-        More info: https://github.com/flixlix/power-flow-card-plus/releases/tag/v0.3.5
+        More info: https://github.com/MauroDruwel/power-flow-card-plus/releases/tag/v0.3.5
         <button
           class="legacy-fields-alert-button"
           slot="action"
