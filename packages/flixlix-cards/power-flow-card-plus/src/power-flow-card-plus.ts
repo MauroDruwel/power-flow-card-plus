@@ -503,6 +503,8 @@ export class PowerFlowCardPlus extends LitElement {
             : spacer}
           ${flowElement(this._config, {
             battery: combinedBattery,
+            battery1: battery,
+            battery2,
             grid,
             individual: individualObjs,
             newDur,
@@ -854,6 +856,14 @@ export class PowerFlowCardPlus extends LitElement {
       getEntityStateWatts: (entityId) => getEntityStateWatts(this.hass, entityId),
       getEntityState: (entityId) => getEntityState(this.hass, entityId),
     });
+    const totalToBattery = (battery.state.toBattery ?? 0) + (battery2.state.toBattery ?? 0);
+    const totalFromBattery = (battery.state.fromBattery ?? 0) + (battery2.state.fromBattery ?? 0);
+    const b1ChargeRatio = totalToBattery > 0 ? (battery.state.toBattery ?? 0) / totalToBattery : 0.5;
+    const b1DischargeRatio = totalFromBattery > 0 ? (battery.state.fromBattery ?? 0) / totalFromBattery : 0.5;
+    battery.state.toGrid = Math.round((combinedBattery.state.toGrid ?? 0) * b1DischargeRatio);
+    battery.state.toHome = Math.round((combinedBattery.state.toHome ?? 0) * b1DischargeRatio);
+    battery2.state.toGrid = Math.round((combinedBattery.state.toGrid ?? 0) * (1 - b1DischargeRatio));
+    battery2.state.toHome = Math.round((combinedBattery.state.toHome ?? 0) * (1 - b1DischargeRatio));
     if (!grid.has) {
       grid.state.fromGrid = 0;
       grid.state.toGrid = 0;

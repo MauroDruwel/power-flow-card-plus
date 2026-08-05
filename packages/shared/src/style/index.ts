@@ -162,6 +162,19 @@ export const styles = css`
     top: var(--lines-svg-not-flat-line-top);
   }
 
+  .lines.multi-battery-lines {
+    display: block;
+    z-index: 2;
+  }
+  .lines.multi-battery-lines svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+
   .multi-individual {
     left: calc(var(--size-circle-entity) + 2%);
     margin-left: -2.2% !important;

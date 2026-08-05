@@ -17,13 +17,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flixlix/power-flow-card-plus.git"
+    "url": "git+https://github.com/MauroDruwel/power-flow-card-plus.git"
   },
-  "author": "flixlix",
+  "author": "MauroDruwel",
   "bugs": {
-    "url": "https://github.com/flixlix/power-flow-card-plus/issues"
+    "url": "https://github.com/MauroDruwel/power-flow-card-plus/issues"
   },
-  "homepage": "https://github.com/flixlix/power-flow-card-plus#readme",
+  "homepage": "https://github.com/MauroDruwel/power-flow-card-plus#readme",
   "scripts": {
     "build": "rollup -c",
     "clean": "rimraf dist node_modules",

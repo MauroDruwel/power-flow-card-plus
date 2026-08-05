@@ -42,7 +42,7 @@ const CONFIG_PAGES: {
   },
   {
     page: "battery_2",
-    icon: "mdi:battery-high-variant",
+    icon: "mdi:battery",
     schema: batterySchema,
   },
   {
