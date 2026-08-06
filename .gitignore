@@ -1,5 +1,17 @@
+# Dependencies
 node_modules
+
+# Build output
 dist
+/power-flow-card-plus.js
+*.tsbuildinfo
 .turbo
+
+# Logs
 *.log
+pnpm-debug.log*
+
+# Editors / OS
 .DS_Store
+.idea/
+.vscode/

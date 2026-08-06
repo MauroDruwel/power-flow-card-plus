@@ -1,22 +1,22 @@
 # Power Flow Card Plus
 
+A fork of [Power Flow Card Plus](https://github.com/flixlix/power-flow-card-plus) that adds support for a **second battery** (`battery_2`), on top of all the features of the upstream card.
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg?style=flat-square)](https://github.com/hacs/integration)
-![GitHub total downloads](https://img.shields.io/github/downloads/MauroDruwel/power-flow-card-plus/total?style=flat-square)
-![commit_activity](https://img.shields.io/github/commit-activity/y/MauroDruwel/power-flow-card-plus?color=brightgreen&label=Commits&style=flat-square)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/MauroDruwel/power-flow-card-plus?style=flat-square)
+![Build status](https://img.shields.io/github/actions/workflow/status/MauroDruwel/power-flow-card-plus/build.yml?style=flat-square)
+![GitHub total downloads](https://img.shields.io/github/downloads/MauroDruwel/power-flow-card-plus/total?style=flat-square)
+![license](https://img.shields.io/github/license/MauroDruwel/power-flow-card-plus?style=flat-square)
 
 ![2023-03-26-13-04-07](https://user-images.githubusercontent.com/61006057/227771568-78497ecc-e863-46f2-b29e-e15c7c20a154.gif)
 
 > [!NOTE]
-> This card is a fork of [flixlix/power-flow-card-plus](https://github.com/flixlix/power-flow-card-plus) with multiple battery support. Source code and issues live at [MauroDruwel/power-flow-card-plus](https://github.com/MauroDruwel/power-flow-card-plus).
+> This card is a fork of [flixlix/power-flow-card-plus](https://github.com/flixlix/power-flow-card-plus) with multiple battery support. Everything else behaves exactly like the upstream card. Bug reports and feature requests are welcome at [MauroDruwel/power-flow-card-plus](https://github.com/MauroDruwel/power-flow-card-plus).
 
-> [!IMPORTANT]
-> **This is a fork with multiple battery support.** In addition to the regular `battery` entity, you can now configure a second battery via `entities.battery_2` (see [Battery Configuration](#battery-configuration) and the [Two Batteries](#two-batteries) example). Everything else behaves exactly like the upstream card. The TypeScript source of this fork lives in the `packages/` directory and can be built with `pnpm install && pnpm build` (the compiled `power-flow-card-plus.js` at the repo root is committed and ready to use).
-
-## Additional Features / Enhancements
+## Features
 
 - Multiple batteries (up to 2) 🔋🔋
-- UI Editor!!! 🥳
+- UI Editor 🥳
 - Multiple Language support (🇺🇸, 🇩🇪, 🇵🇹, 🇪🇸, 🇧🇷, 🇳🇱, 🇮🇹, 🇫🇷, 🇷🇺, 🇫🇮, 🇵🇱, 🇩🇰, 🇸🇰, 🇨🇿)
 - Bidirectional Individual Entities ↕️
 - Secondary Information for all circles ℹ️
@@ -43,22 +43,6 @@
 
 </details>
 
-## Goal
-
-The Goal of this card is to provide an easy to understand and visualize way of displaying the current Power Distribution coming from and to different sources, such as solar, grid, home batteries etc. Furthermore, this card aims to expose a lot of customizability and control of its behavior to the configuration, allowing users to tailor it to their specific requirements.
-
-## Scope
-
-This card **does not** aim to display Energy Values (Meaning accumulated power over 1 day, for example).
-If this is your goal, check out the [Energy Flow Card Plus](https://github.com/flixlix/energy-flow-card-plus).
-
-## Guides
-
-In case you want to watch a tutorial instead of reading through this very long readme 😅, I recommend the following videos:
-
-- [Power Flow Card Plus in Home Assistant - Jetzt noch besser? Anleitung from Smartzeug](https://youtu.be/PUOU5qdhMro) - _in german_, up to date with version 0.2.2
-- [Power Flow Card Plus for Home Assistant from Speak to the Geek](https://youtu.be/C4Zh35E9wJE?si=REuWZxmfF91G0Ht7) - _changes in indvidual configuration_
-
 ## Installation
 
 ### HACS (recommended)
@@ -73,7 +57,7 @@ After having HACS installed, simply search for "Power Flow Card Plus" and downlo
 
 1. Download and copy `power-flow-card-plus.js` from the [latest release](https://github.com/MauroDruwel/power-flow-card-plus/releases/latest) into your `config/www` directory.
 
-2. Add the resource reference as decribed below.
+2. Add the resource reference as described below.
 
 ### Add resource reference
 
@@ -100,7 +84,7 @@ Else, if you prefer the graphical editor, use the menu to add the resource:
 ## Usage
 
 > [!WARNING]  
-> This card offers a **LOT** of configuration options. Don't worry, if you want your card's appearance to match the oficial Energy Flow Card, you will only need to setup the entities. The rest of the options only enable further customization. If this is your goal, please go to [Minimal Configuration](#minimal-configuration)
+> This card offers a **LOT** of configuration options. Don't worry, if you want your card's appearance to match the official Energy Flow Card, you will only need to setup the entities. The rest of the options only enable further customization. If this is your goal, please go to [Minimal Configuration](#minimal-configuration)
 
 ### Options
 
@@ -533,16 +517,16 @@ On the old Flow Formula you might think that the sun is producing a lot of power
 
 At the end of the day these are two options and depending on what you're interested, one might suit you better than the other, that's why I kept the old formula, you have the choice. 🙂
 
-### To-Do List
+## Development
 
-Here is my to-do list containing a few enhancements I am planning in adding. The ones at the top are bigger priorities, so they’ll probably be available before the ones at the bottom.
+```bash
+pnpm install
+pnpm typecheck
+pnpm build
+```
 
-- [x] Change Tap Action Behavior to be compatible with Browser Mod
-- Fill the circles [#89](https://github.com/flixlix/power-flow-card-plus/issues/89)
-- [x] More than two Individual Devices [#54](https://github.com/flixlix/power-flow-card-plus/issues/54)
-- More than one solar source [#23](https://github.com/flixlix/power-flow-card-plus/issues/23)
-- Display Connected/Disconnected status [#111](https://github.com/flixlix/power-flow-card-plus/issues/111)
-- Grid Feed In Circle [#119](https://github.com/flixlix/power-flow-card-plus/issues/119)
-- Improve performance [#144](https://github.com/flixlix/power-flow-card-plus/issues/144)
+The TypeScript source lives in `packages/`. Build artifacts are not committed to the repository: pushing a `v*` tag triggers the [release workflow](.github/workflows/release.yml), which builds the bundle and attaches `power-flow-card-plus.js` to the GitHub release. HACS and manual installs consume that release asset.
 
-I am still just one person working on this project and obviously have other things going on in my life, so feel free to contribute to the project. You can also feel free to create a PR with a new feature and I'll try my best to review it 😊
+## License
+
+[MIT](LICENSE) — based on the original work of [flixlix](https://github.com/flixlix).

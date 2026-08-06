@@ -1,6 +1,6 @@
 # power-flow-card-plus (dual-battery fork)
 
-## 0.3.7-fork
+## 0.4.0
 
 ### Features
 
@@ -10,4 +10,15 @@
 
 - Multi-battery overlay flow lines: correct stroke colors, per-battery toGrid/toHome split, proper SVG coordinate alignment
 - Battery 2 configurator icon (`mdi:battery`)
+
+### Repository / Tooling
+
+- Build artifacts are no longer committed; a release workflow builds the bundle and attaches it to GitHub releases on `v*` tags
+- CI runs typecheck and build on push/PR; README, `hacs.json` and repo metadata cleaned up
+- Added MIT license
+
+## 0.3.7-fork
+
+### Fixes
+
 - Repo metadata, build pipeline, and README updated for this fork
