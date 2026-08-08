@@ -10,7 +10,7 @@ export const X_BATTERY_2 = 48;
 export const X_GRID = 8;
 export const X_HOME = 92;
 export const X_SOLAR = 50;
-export const Y_BATTERY_ANCHOR = 100;
+export const Y_BATTERY_ANCHOR = 96;
 export const Y_GRID_HOME_ANCHOR = 55;
 export const Y_SOLAR_ANCHOR = 8;
 
@@ -71,7 +71,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},100 C${X_BATTERY_1},70 15,55 ${X_GRID},55"
+              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 15,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -80,7 +80,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},100 C${X_BATTERY_2},65 28,55 ${X_GRID},55"
+              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},65 28,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
@@ -123,7 +123,7 @@ export const flowMultiBattery = (
                 battery1.state.toHome || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},100 C${X_BATTERY_1},70 80,55 ${X_HOME},55"
+              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 80,55 ${X_HOME},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -132,7 +132,7 @@ export const flowMultiBattery = (
                 battery2.state.toHome || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},100 C${X_BATTERY_2},70 80,55 ${X_HOME},55"
+              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},70 80,55 ${X_HOME},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
@@ -159,7 +159,7 @@ export const flowMultiBattery = (
                 solar.state.toBattery || 0,
                 config
               )}"
-              d="M${X_SOLAR},8 C${X_SOLAR},40 ${X_BATTERY_1},60 ${X_BATTERY_1},100"
+              d="M${X_SOLAR},${Y_SOLAR_ANCHOR} C${X_SOLAR},40 ${X_BATTERY_1},60 ${X_BATTERY_1},${Y_BATTERY_ANCHOR}"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -168,7 +168,7 @@ export const flowMultiBattery = (
                 solar.state.toBattery || 0,
                 config
               )}"
-              d="M${X_SOLAR},8 C${X_SOLAR},40 ${X_BATTERY_2},60 ${X_BATTERY_2},100"
+              d="M${X_SOLAR},${Y_SOLAR_ANCHOR} C${X_SOLAR},40 ${X_BATTERY_2},60 ${X_BATTERY_2},${Y_BATTERY_ANCHOR}"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
