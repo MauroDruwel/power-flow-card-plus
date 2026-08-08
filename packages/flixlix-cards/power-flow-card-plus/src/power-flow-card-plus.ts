@@ -610,13 +610,13 @@ export class PowerFlowCardPlus extends LitElement {
       svgY: ((clientY - svgRect.top) / svgRect.height) * 100,
     });
     const anchors: DebugAnchor[] = [];
-    const addReal = (label: string, el: HTMLElement | null) => {
+    const addReal = (label: string, el: HTMLElement | null, useTopEdge = false) => {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const { svgX, svgY } = toSvg(centerX, centerY);
-      const { relX, relY } = toRel(centerX, centerY);
+      const anchorY = useTopEdge ? rect.top : rect.top + rect.height / 2;
+      const { svgX, svgY } = toSvg(centerX, anchorY);
+      const { relX, relY } = toRel(centerX, anchorY);
       anchors.push({
         label: `${label} real`,
         real: true,
@@ -629,10 +629,7 @@ export class PowerFlowCardPlus extends LitElement {
     const batteries = shadow.querySelectorAll<HTMLElement>(
       ".circle-container.battery .circle"
     );
-    batteries.forEach((circle, index) => addReal(`b${index + 1}`, circle));
-    addReal("grid", shadow.querySelector<HTMLElement>(".circle-container.grid .circle"));
-    addReal("home", shadow.querySelector<HTMLElement>(".circle-container.home .circle"));
-    addReal("solar", shadow.querySelector<HTMLElement>(".circle-container.solar .circle"));
+    batteries.forEach((circle, index) => addReal(`b${index + 1} top`, circle, true));
     const addAssumed = (label: string, svgX: number, svgY: number) => {
       const { relX, relY } = toRel(
         svgRect.left + (svgX / 100) * svgRect.width,

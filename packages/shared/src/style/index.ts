@@ -165,10 +165,9 @@ export const styles = css`
   .lines.multi-battery-lines {
     display: block;
     z-index: 2;
-    bottom: 60px;
-    height: calc(100% - 125px);
   }
-  .lines.multi-battery-lines svg {
+  .lines.multi-battery-lines svg,
+  .lines.multi-battery-lines svg:not(.flat-line) {
     position: absolute;
     left: calc(-1 * var(--size-circle-entity));
     top: 0;

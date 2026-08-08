@@ -5,12 +5,12 @@ import { styleLine } from "@flixlix-cards/shared/utils/style-line";
 import { html, nothing, svg } from "lit";
 import { type Flows } from "./index";
 
-export const X_BATTERY_1 = 22;
-export const X_BATTERY_2 = 48;
+export const X_BATTERY_1 = 36;
+export const X_BATTERY_2 = 64;
 export const X_GRID = 8;
 export const X_HOME = 92;
 export const X_SOLAR = 50;
-export const Y_BATTERY_ANCHOR = 96;
+export const Y_BATTERY_ANCHOR = 100;
 export const Y_GRID_HOME_ANCHOR = 55;
 export const Y_SOLAR_ANCHOR = 8;
 
@@ -57,7 +57,7 @@ export const flowMultiBattery = (
   const showSolar = solar.has && showLine(config, solar.state.toBattery || 0);
   if (!showGrid && !showHome && !showSolar) return nothing;
 
-  return html`<div class="lines multi-battery-lines">
+  return html`<div class="lines multi-battery-lines high">
     <svg
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 15,55 ${X_GRID},55"
+              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 20,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -80,7 +80,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},65 28,55 ${X_GRID},55"
+              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},65 20,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
