@@ -29,6 +29,7 @@ interface mainConfigOptions {
   style_ha_card?: any;
   style_card_content?: any;
   disable_dots?: boolean;
+  debug_dots?: boolean;
   no_labels?: boolean;
   display_zero_lines?: {
     mode?: DisplayZeroLinesMode;

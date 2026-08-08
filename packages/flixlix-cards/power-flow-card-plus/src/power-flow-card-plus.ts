@@ -1,5 +1,15 @@
 import { batteryElement } from "@flixlix-cards/shared/components/battery";
 import { flowElement } from "@flixlix-cards/shared/components/flows/index";
+import {
+  X_BATTERY_1,
+  X_BATTERY_2,
+  X_GRID,
+  X_HOME,
+  X_SOLAR,
+  Y_BATTERY_ANCHOR,
+  Y_GRID_HOME_ANCHOR,
+  Y_SOLAR_ANCHOR,
+} from "@flixlix-cards/shared/components/flows/multi-battery";
 import { gridElement } from "@flixlix-cards/shared/components/grid";
 import { homeElement } from "@flixlix-cards/shared/components/home";
 import { individualLeftBottomElement } from "@flixlix-cards/shared/components/individual-left-bottom-element";
@@ -89,6 +99,15 @@ registerCustomCard({
   version: packageJson.version,
 });
 
+export type DebugAnchor = {
+  label: string;
+  real: boolean;
+  svgX: number;
+  svgY: number;
+  relX: number;
+  relY: number;
+};
+
 @customElement("power-flow-card-plus")
 export class PowerFlowCardPlus extends LitElement {
   @property({ attribute: false }) public hass!: HomeAssistant;
@@ -111,6 +130,8 @@ export class PowerFlowCardPlus extends LitElement {
   @query("#solar-battery-flow") solarToBatteryFlow?: SVGSVGElement;
   @query("#solar-grid-flow") solarToGridFlow?: SVGSVGElement;
   @query("#solar-home-flow") solarToHomeFlow?: SVGSVGElement;
+
+  @state() private _debugAnchors: DebugAnchor[] = [];
   private _renderData?:
     | {
         entities: PowerFlowCardPlusConfig["entities"];
@@ -510,6 +531,22 @@ export class PowerFlowCardPlus extends LitElement {
             newDur,
             solar,
           })}
+          ${this._config.debug_dots && this._debugAnchors.length
+            ? html`<div class="debug-overlay">
+                ${this._debugAnchors.map(
+                  (anchor) => html`
+                    <div
+                      class="debug-dot ${anchor.real ? "real" : "assumed"}"
+                      style=${`left:${anchor.relX}px;top:${anchor.relY}px`}
+                    ></div>
+                    <div
+                      class="debug-label ${anchor.real ? "real" : "assumed"}"
+                      style=${`left:${anchor.relX}px;top:${anchor.relY}px`}
+                    >${anchor.label} svg(${anchor.svgX},${anchor.svgY}) px(${anchor.relX},${anchor.relY})</div>
+                  `
+                )}
+              </div>`
+            : nothing}
         </div>
         ${dashboardLinkElement(this._config, this.hass)}
       </ha-card>
@@ -541,7 +578,85 @@ export class PowerFlowCardPlus extends LitElement {
       }
     }
 
+    this._measureDebugAnchors();
+
     this._tryConnectAll();
+  }
+
+  private _measureDebugAnchors(): void {
+    if (!this._config.debug_dots) {
+      if (this._debugAnchors.length) {
+        this._debugAnchors = [];
+      }
+      return;
+    }
+    const shadow = this.shadowRoot;
+    const content = shadow?.querySelector<HTMLElement>("#power-flow-card-plus");
+    const svg = shadow?.querySelector<SVGSVGElement>(".multi-battery-lines svg");
+    if (!shadow || !content || !svg) {
+      return;
+    }
+    const contentRect = content.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
+    if (!contentRect.width || !svgRect.width || !svgRect.height) {
+      return;
+    }
+    const toRel = (clientX: number, clientY: number) => ({
+      relX: clientX - contentRect.left,
+      relY: clientY - contentRect.top,
+    });
+    const toSvg = (clientX: number, clientY: number) => ({
+      svgX: ((clientX - svgRect.left) / svgRect.width) * 100,
+      svgY: ((clientY - svgRect.top) / svgRect.height) * 100,
+    });
+    const anchors: DebugAnchor[] = [];
+    const addReal = (label: string, el: HTMLElement | null) => {
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const { svgX, svgY } = toSvg(centerX, centerY);
+      const { relX, relY } = toRel(centerX, centerY);
+      anchors.push({
+        label: `${label} real`,
+        real: true,
+        svgX: Math.round(svgX * 100) / 100,
+        svgY: Math.round(svgY * 100) / 100,
+        relX: Math.round(relX * 100) / 100,
+        relY: Math.round(relY * 100) / 100,
+      });
+    };
+    const batteries = shadow.querySelectorAll<HTMLElement>(
+      ".circle-container.battery .circle"
+    );
+    batteries.forEach((circle, index) => addReal(`b${index + 1}`, circle));
+    addReal("grid", shadow.querySelector<HTMLElement>(".circle-container.grid .circle"));
+    addReal("home", shadow.querySelector<HTMLElement>(".circle-container.home .circle"));
+    addReal("solar", shadow.querySelector<HTMLElement>(".circle-container.solar .circle"));
+    const addAssumed = (label: string, svgX: number, svgY: number) => {
+      const { relX, relY } = toRel(
+        svgRect.left + (svgX / 100) * svgRect.width,
+        svgRect.top + (svgY / 100) * svgRect.height
+      );
+      anchors.push({
+        label: `${label} assumed`,
+        real: false,
+        svgX,
+        svgY,
+        relX: Math.round(relX * 100) / 100,
+        relY: Math.round(relY * 100) / 100,
+      });
+    };
+    addAssumed("b1", X_BATTERY_1, Y_BATTERY_ANCHOR);
+    addAssumed("b2", X_BATTERY_2, Y_BATTERY_ANCHOR);
+    addAssumed("grid", X_GRID, Y_GRID_HOME_ANCHOR);
+    addAssumed("home", X_HOME, Y_GRID_HOME_ANCHOR);
+    addAssumed("solar", X_SOLAR, Y_SOLAR_ANCHOR);
+    const next = JSON.stringify(anchors);
+    if (next !== JSON.stringify(this._debugAnchors)) {
+      this._debugAnchors = anchors;
+      console.log("[power-flow-card-plus] debug anchors:", anchors);
+    }
   }
 
   protected willUpdate(changedProps: PropertyValues): void {

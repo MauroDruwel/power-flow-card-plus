@@ -1,5 +1,11 @@
 # power-flow-card-plus (dual-battery fork)
 
+## 0.4.1
+
+### Features
+
+- **`debug_dots` option**: when enabled, the card overlays dots on the multi-battery flow lines showing the assumed SVG anchors (blue) versus the real circle centers measured from the DOM (red), each labeled with `svg(x,y)` and `px(x,y)` coordinates and logged to the browser console. Helps tune the multi-battery line positions.
+
 ## 0.4.0
 
 ### Features

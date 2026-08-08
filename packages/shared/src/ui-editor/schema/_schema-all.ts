@@ -46,6 +46,7 @@ export const cardConfigStruct = assign(
     style_ha_card: optional(any()),
     style_card_content: optional(any()),
     disable_dots: optional(boolean()),
+    debug_dots: optional(boolean()),
     no_labels: optional(boolean()),
     entities: object({
       battery: optional(any()),

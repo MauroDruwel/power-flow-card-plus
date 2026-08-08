@@ -620,4 +620,46 @@ export const styles = css`
   .pointer-events-none {
     pointer-events: none;
   }
+
+  .debug-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .debug-overlay .debug-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #fff;
+    box-sizing: border-box;
+  }
+  .debug-overlay .debug-dot.assumed {
+    background: #2196f3;
+    width: 8px;
+    height: 8px;
+  }
+  .debug-overlay .debug-dot.real {
+    background: #f44336;
+  }
+  .debug-overlay .debug-label {
+    position: absolute;
+    transform: translate(-50%, calc(-100% - 4px));
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 10px;
+    line-height: 1.3;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    font-family: monospace;
+  }
+  .debug-overlay .debug-label.assumed {
+    color: #90caf9;
+  }
+  .debug-overlay .debug-label.real {
+    color: #ff8a80;
+  }
 `;
