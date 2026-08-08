@@ -5,8 +5,8 @@ import { styleLine } from "@flixlix-cards/shared/utils/style-line";
 import { html, nothing, svg } from "lit";
 import { type Flows } from "./index";
 
-export const X_BATTERY_1 = 36;
-export const X_BATTERY_2 = 64;
+export const X_BATTERY_1 = 22;
+export const X_BATTERY_2 = 48;
 export const X_GRID = 8;
 export const X_HOME = 92;
 export const X_SOLAR = 50;
@@ -71,7 +71,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},100 C${X_BATTERY_1},70 20,55 ${X_GRID},55"
+              d="M${X_BATTERY_1},100 C${X_BATTERY_1},70 15,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -80,7 +80,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},100 C${X_BATTERY_2},65 20,55 ${X_GRID},55"
+              d="M${X_BATTERY_2},100 C${X_BATTERY_2},65 28,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
