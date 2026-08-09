@@ -12,7 +12,7 @@ export const X_HOME = 92;
 export const X_SOLAR = 50;
 export const Y_BATTERY_ANCHOR = 90;
 export const Y_GRID_HOME_ANCHOR = 55;
-export const Y_SOLAR_ANCHOR = 8;
+export const Y_SOLAR_ANCHOR = 0;
 
 const dot = (
   config: FlowCardPlusConfig,
