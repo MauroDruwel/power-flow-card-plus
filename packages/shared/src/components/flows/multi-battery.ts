@@ -5,12 +5,12 @@ import { styleLine } from "@flixlix-cards/shared/utils/style-line";
 import { html, nothing, svg } from "lit";
 import { type Flows } from "./index";
 
-export const X_BATTERY_1 = 36;
+export const X_BATTERY_1 = 38;
 export const X_BATTERY_2 = 64;
 export const X_GRID = 8;
 export const X_HOME = 92;
 export const X_SOLAR = 50;
-export const Y_BATTERY_ANCHOR = 100;
+export const Y_BATTERY_ANCHOR = 90;
 export const Y_GRID_HOME_ANCHOR = 55;
 export const Y_SOLAR_ANCHOR = 8;
 
