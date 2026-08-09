@@ -14,6 +14,14 @@ export const Y_BATTERY_ANCHOR = 90;
 export const Y_GRID_HOME_ANCHOR = 55;
 export const Y_SOLAR_ANCHOR = 0;
 
+// Match the single-battery paths: grid enters from the left, home from the
+// right, and solar enters at the center of each battery.
+const BATTERY_CONNECTION_OFFSET = 3;
+const X_BATTERY_1_FROM_GRID = X_BATTERY_1 - BATTERY_CONNECTION_OFFSET;
+const X_BATTERY_1_TO_HOME = X_BATTERY_1 + BATTERY_CONNECTION_OFFSET;
+const X_BATTERY_2_FROM_GRID = X_BATTERY_2 - BATTERY_CONNECTION_OFFSET;
+const X_BATTERY_2_TO_HOME = X_BATTERY_2 + BATTERY_CONNECTION_OFFSET;
+
 const dot = (
   config: FlowCardPlusConfig,
   condition: boolean,
@@ -71,7 +79,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 20,55 ${X_GRID},55"
+              d="M${X_BATTERY_1_FROM_GRID},${Y_BATTERY_ANCHOR} C${X_BATTERY_1_FROM_GRID},70 20,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -80,7 +88,7 @@ export const flowMultiBattery = (
                 grid.state.toBattery || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},65 20,55 ${X_GRID},55"
+              d="M${X_BATTERY_2_FROM_GRID},${Y_BATTERY_ANCHOR} C${X_BATTERY_2_FROM_GRID},65 20,55 ${X_GRID},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
@@ -123,7 +131,7 @@ export const flowMultiBattery = (
                 battery1.state.toHome || 0,
                 config
               )}"
-              d="M${X_BATTERY_1},${Y_BATTERY_ANCHOR} C${X_BATTERY_1},70 80,55 ${X_HOME},55"
+              d="M${X_BATTERY_1_TO_HOME},${Y_BATTERY_ANCHOR} C${X_BATTERY_1_TO_HOME},70 80,55 ${X_HOME},55"
               vector-effect="non-scaling-stroke"
             ></path>
             <path
@@ -132,7 +140,7 @@ export const flowMultiBattery = (
                 battery2.state.toHome || 0,
                 config
               )}"
-              d="M${X_BATTERY_2},${Y_BATTERY_ANCHOR} C${X_BATTERY_2},70 80,55 ${X_HOME},55"
+              d="M${X_BATTERY_2_TO_HOME},${Y_BATTERY_ANCHOR} C${X_BATTERY_2_TO_HOME},70 80,55 ${X_HOME},55"
               vector-effect="non-scaling-stroke"
             ></path>
             ${dot(
